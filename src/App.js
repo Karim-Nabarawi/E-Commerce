@@ -5,6 +5,7 @@ import { Switch, Route } from "react-router-dom";
 import "./styles/App.css";
 //Components
 import HomePage from "./Pages/Home/HomePage";
+import Shop from "./Pages/Shop/Shop";
 
 function App() {
   return (
@@ -14,6 +15,10 @@ function App() {
           <HomePage />
         </Route>
         {/* <Route path="/" exact component={HomePage} */}
+
+        <Route path="/shop">
+          <Shop />
+        </Route>
       </Switch>
     </div>
   );
