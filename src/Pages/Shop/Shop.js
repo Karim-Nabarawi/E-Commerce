@@ -8,7 +8,7 @@ const Shop = () => {
   const [collections, setCollections] = useState(ShopData);
   return (
     <div className="shop">
-      <h1>d</h1>
+      <h1>Collection</h1>
       {collections.map(({ id, ...otherCollection }) => (
         <CollectionPreview key={id} {...otherCollection} />
       ))}
