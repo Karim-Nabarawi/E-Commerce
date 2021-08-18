@@ -8,20 +8,19 @@ import Header from "./components/header/Header";
 //Pages
 import HomePage from "./Pages/Home/HomePage";
 import Shop from "./Pages/Shop/Shop";
+import LoginPage from "./Pages/LoginPage/LoginPage";
 
 function App() {
   return (
     <div>
       <Header />
       <Switch>
-        <Route path="/" exact>
+        {/* <Route path="/" exact>
           <HomePage />
-        </Route>
-        {/* <Route path="/" exact component={HomePage} */}
-
-        <Route path="/shop">
-          <Shop />
-        </Route>
+        </Route> */}
+        <Route path="/" exact component={HomePage} />
+        <Route path="/shop" component={Shop} />
+        <Route path="/signin" component={LoginPage} />
       </Switch>
     </div>
   );
