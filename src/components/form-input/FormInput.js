@@ -7,7 +7,7 @@ const FormInput = ({ handleChange, label, ...otherData }) => {
   return (
     <div className="group">
       <input {...otherData} className="form-input" onChange={handleChange} />
-      {label ? <label className={`${otherData.value.lenght ? "shrink" : ""} form-input-label`}>{label}</label> : null}
+      {label ? <label className={`${otherData.value.lenght ? "" : "shrink"} form-input-label`}>{label}</label> : null}
     </div>
   );
 };
