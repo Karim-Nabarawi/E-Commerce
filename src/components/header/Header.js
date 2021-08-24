@@ -9,6 +9,10 @@ import { auth } from "../../firebase/firebase.utils";
 import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 
+//component
+import CartIcon from "../cart-icon/CartIcon";
+import CartDropdown from "../cart-dropdown/CartDropdown";
+
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
   return (
@@ -32,7 +36,9 @@ const Header = () => {
             SIGN IN
           </Link>
         )}
+        <CartIcon />
       </div>
+      <CartDropdown />
     </div>
   );
 };
