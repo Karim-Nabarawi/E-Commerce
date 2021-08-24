@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+//redux
 import { useSelector } from "react-redux";
 
+//firebase
 import { auth } from "../../firebase/firebase.utils";
 
 //Styling
@@ -15,6 +17,7 @@ import CartDropdown from "../cart-dropdown/CartDropdown";
 
 const Header = () => {
   const { currentUser } = useSelector((state) => state.user);
+  const { hidden } = useSelector((state) => state.cart);
   return (
     <div className="header">
       <Link to="/" className="logo-container">
@@ -38,7 +41,7 @@ const Header = () => {
         )}
         <CartIcon />
       </div>
-      <CartDropdown />
+      {!hidden && <CartDropdown />}
     </div>
   );
 };
