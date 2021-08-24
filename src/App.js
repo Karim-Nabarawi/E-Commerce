@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 
+//redux
+import { useDispatch } from "react-redux";
+import { setCurrentUser } from "./redux/user/user.actions";
+
 //auth
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
@@ -14,9 +18,10 @@ import Shop from "./Pages/Shop/Shop";
 import LoginPage from "./Pages/LoginPage/LoginPage";
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null);
+  const [currentUser, setCurrentUser2] = useState(null);
+  const dispatch = useDispatch();
 
-  useEffect(() => console.log(currentUser), [currentUser]);
+  useEffect(() => dispatch(setCurrentUser(currentUser)), [currentUser]);
   useEffect(() => {
     // check if user is signin or not and if signed in get the user data ()
     let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
@@ -26,7 +31,7 @@ function App() {
 
         //using onSnapshot we can get a snape (copy) of the data from database (if it exist, and it's data)
         userRef.onSnapshot((snapShot) => {
-          setCurrentUser({
+          setCurrentUser2({
             currentUser: {
               id: snapShot.id,
               ...snapShot.data(),
@@ -34,7 +39,7 @@ function App() {
           });
         });
       } else {
-        setCurrentUser(userAuth);
+        setCurrentUser2(userAuth);
       }
     });
 
@@ -42,9 +47,10 @@ function App() {
     //   unsubscribeFromAuth();
     // };
   }, []);
+
   return (
     <div>
-      <Header currentUser={currentUser} />
+      <Header />
       <Switch>
         {/* <Route path="/" exact>
           <HomePage />
