@@ -4,7 +4,6 @@ import ShopData from "./shop.data";
 import CollectionPreview from "../../components/preview-collection/CollectionPreview";
 
 const Shop = () => {
-  console.log(ShopData);
   const [collections, setCollections] = useState(ShopData);
   return (
     <div className="shop">
