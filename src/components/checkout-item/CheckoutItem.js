@@ -1,9 +1,18 @@
 import React from "react";
 
+//redux
+import { useDispatch } from "react-redux";
+import { clearItem } from "../../redux/cart/cart.actions";
+
 //Styling and Animation
 import "./checkout-item.styles.scss";
 
-const CheckoutItem = ({ cartItem: { imageUrl, name, quantity, price } }) => {
+const CheckoutItem = ({ cartItem }) => {
+  const { imageUrl, name, quantity, price } = cartItem;
+  const dispatch = useDispatch();
+  const removeHandler = () => {
+    dispatch(clearItem(cartItem));
+  };
   return (
     <div className="checkout-item">
       <div className="image-container">
@@ -12,7 +21,9 @@ const CheckoutItem = ({ cartItem: { imageUrl, name, quantity, price } }) => {
       <span className="name">{name}</span>
       <span className="quantity">{quantity}</span>
       <span className="price">{price}</span>
-      <div className="remove-button">&#10005;</div>
+      <div className="remove-button" onClick={removeHandler}>
+        &#10005;
+      </div>
     </div>
   );
 };
