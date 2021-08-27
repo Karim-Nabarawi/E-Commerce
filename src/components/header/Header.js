@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 
 //redux
 import { useSelector } from "react-redux";
+import { selectCartHidden } from "../../redux/cart/cart.selectors";
+import { selectCurrentUser } from "../../redux/user/user.selector";
 
 //firebase
 import { auth } from "../../firebase/firebase.utils";
@@ -16,8 +18,8 @@ import CartIcon from "../cart-icon/CartIcon";
 import CartDropdown from "../cart-dropdown/CartDropdown";
 
 const Header = () => {
-  const { currentUser } = useSelector((state) => state.user);
-  const { hidden } = useSelector((state) => state.cart);
+  const currentUser = useSelector(selectCurrentUser);
+  const hidden = useSelector(selectCartHidden);
   return (
     <div className="header">
       <Link to="/" className="logo-container">

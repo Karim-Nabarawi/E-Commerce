@@ -4,6 +4,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrentUser } from "./redux/user/user.actions";
+import { selectCurrentUser } from "./redux/user/user.selector";
 
 //auth
 import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
@@ -16,12 +17,13 @@ import Header from "./components/header/Header";
 import HomePage from "./Pages/Home/HomePage";
 import Shop from "./Pages/Shop/Shop";
 import LoginPage from "./Pages/LoginPage/LoginPage";
+import Checkout from "./Pages/checkout/Checkout";
 
 function App() {
   const [User, setUser] = useState(null);
   const dispatch = useDispatch();
 
-  const { currentUser } = useSelector((state) => state.user);
+  const currentUser = useSelector(selectCurrentUser);
 
   useEffect(() => dispatch(setCurrentUser(User)), [User]);
   useEffect(() => {
@@ -59,6 +61,7 @@ function App() {
         </Route> */}
         <Route path="/" exact component={HomePage} />
         <Route path="/shop" component={Shop} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route exact path="/signin" render={() => (currentUser ? <Redirect to="/" /> : <LoginPage />)} />
       </Switch>
     </div>
