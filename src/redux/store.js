@@ -5,7 +5,9 @@ import thunk from "redux-thunk";
 
 import rootReducer from "./root-reducer";
 
-const middlewares = [logger, thunk];
+const middlewares = [];
+
+if (process.env.NODE_ENV === "development") middlewares.push(logger, thunk);
 
 const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
