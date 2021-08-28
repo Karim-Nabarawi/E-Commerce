@@ -11,6 +11,12 @@ const buttonStyles = css`
   }
 `;
 
+const shopButtonStyles = css`
+  width: 80%;
+  position: absolute;
+  top: 255px;
+`;
+
 const invertedButtonStyles = css`
   background-color: white;
   color: black;
@@ -38,6 +44,10 @@ const getButtonStyles = (props) => {
   return props.inverted ? invertedButtonStyles : buttonStyles;
 };
 
+const shopButton = (props) => {
+  if (props.shopButton) return shopButtonStyles;
+};
+
 export const CustomButtonContainer = styled.button`
   min-width: 165px;
   width: auto;
@@ -54,4 +64,5 @@ export const CustomButtonContainer = styled.button`
   justify-content: center;
 
   ${getButtonStyles}
+  ${shopButton}
 `;

@@ -13,9 +13,8 @@ const CollectionOverview = () => {
   const collections = useSelector(selectShopCollectionsForPreview);
   return (
     <div className="collections-overview">
-      {collections.map(({ id, ...otherCollection }) => (
-        <CollectionPreview key={id} {...otherCollection} />
-      ))}
+      {collections &&
+        collections.map(({ id, ...otherCollection }) => <CollectionPreview key={id} {...otherCollection} />)}
     </div>
   );
 };
