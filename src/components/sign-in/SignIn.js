@@ -11,14 +11,14 @@ import FormInput from "../../components/form-input/FormInput";
 import CustomButton from "../../components/custom-button/CustomButton";
 
 const SignIn = () => {
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [userCredentials, setUserCredentials] = useState({ email: "", password: "" });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = formData;
+    const { email, password } = userCredentials;
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      setFormData({ email: "", password: "" });
+      setUserCredentials({ email: "", password: "" });
     } catch (error) {
       console.error(error.message);
     }
@@ -26,7 +26,7 @@ const SignIn = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
 
   return (
@@ -39,7 +39,7 @@ const SignIn = () => {
           id="email"
           name="email"
           label="Email"
-          value={formData.email}
+          value={userCredentials.email}
           handleChange={handleChange}
           required
         />
@@ -48,7 +48,7 @@ const SignIn = () => {
           id="password"
           name="password"
           label="Password"
-          value={formData.password}
+          value={userCredentials.password}
           handleChange={handleChange}
           required
         />
