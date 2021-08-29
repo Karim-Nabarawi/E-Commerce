@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link, useLocation, useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import { CollectionPreviewContainer, TitleContainer, PreviewContainer } from "./CollectionPreview.styles";
 

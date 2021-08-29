@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
@@ -22,7 +22,7 @@ const Shop = ({ match }) => {
 
   useEffect(() => {
     dispatch(fetchCollectionsStartAsync());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="shop">

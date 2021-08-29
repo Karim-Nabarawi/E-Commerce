@@ -10,12 +10,17 @@ import FormInput from "../form-input/FormInput";
 import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
 
 const SignUp = () => {
-  const [fieldData, setFieldData] = useState({ displayName: "", email: "", password: "", confirmPassword: "" });
+  const [userCredentials, setUserCredentials] = useState({
+    displayName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+  const { displayName, email, password, confirmPassword } = userCredentials;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { displayName, email, password, confirmPassword } = fieldData;
     if (password !== confirmPassword) {
       alert("passwords don't match");
       return;
@@ -24,7 +29,7 @@ const SignUp = () => {
     try {
       const { user } = await auth.createUserWithEmailAndPassword(email, password); // using firebase auth to create new account and get it's data back (same as google one) (to get UID)
       await createUserProfileDocument(user, { displayName });
-      setFieldData({ displayName: "", email: "", password: "", confirmPassword: "" }); // clear form
+      setUserCredentials({ displayName: "", email: "", password: "", confirmPassword: "" }); // clear form
     } catch (error) {
       console.error(error.message);
     }
@@ -32,7 +37,7 @@ const SignUp = () => {
 
   const handleChange = (e) => {
     const { value, name } = e.target;
-    setFieldData({ ...fieldData, [name]: value });
+    setUserCredentials({ ...userCredentials, [name]: value });
   };
 
   return (
@@ -43,22 +48,16 @@ const SignUp = () => {
         <FormInput
           type="text"
           name="displayName"
-          value={fieldData.displayName}
+          value={displayName}
           handleChange={handleChange}
           label="Display Name"
         />
-        <FormInput type="email" name="email" value={fieldData.email} handleChange={handleChange} label="Email" />
-        <FormInput
-          type="password"
-          name="password"
-          value={fieldData.password}
-          handleChange={handleChange}
-          label="Password"
-        />
+        <FormInput type="email" name="email" value={email} handleChange={handleChange} label="Email" />
+        <FormInput type="password" name="password" value={password} handleChange={handleChange} label="Password" />
         <FormInput
           type="password"
           name="confirmPassword"
-          value={fieldData.confirmPassword}
+          value={confirmPassword}
           handleChange={handleChange}
           label="Confirm Password"
         />

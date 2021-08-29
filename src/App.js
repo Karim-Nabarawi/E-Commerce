@@ -25,7 +25,7 @@ function App() {
 
   const currentUser = useSelector(selectCurrentUser);
 
-  useEffect(() => dispatch(setCurrentUser(User)), [User]);
+  useEffect(() => dispatch(setCurrentUser(User)), [User, dispatch]);
   useEffect(() => {
     // check if user is signin or not and if signed in get the user data ()
     let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {

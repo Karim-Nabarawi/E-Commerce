@@ -12,10 +12,10 @@ import CustomButton from "../../components/custom-button/CustomButton";
 
 const SignIn = () => {
   const [userCredentials, setUserCredentials] = useState({ email: "", password: "" });
+  const { email, password } = userCredentials;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { email, password } = userCredentials;
     try {
       await auth.signInWithEmailAndPassword(email, password);
       setUserCredentials({ email: "", password: "" });
@@ -39,7 +39,7 @@ const SignIn = () => {
           id="email"
           name="email"
           label="Email"
-          value={userCredentials.email}
+          value={email}
           handleChange={handleChange}
           required
         />
@@ -48,7 +48,7 @@ const SignIn = () => {
           id="password"
           name="password"
           label="Password"
-          value={userCredentials.password}
+          value={password}
           handleChange={handleChange}
           required
         />
