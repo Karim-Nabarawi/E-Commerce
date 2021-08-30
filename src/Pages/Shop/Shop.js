@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { Route } from "react-router-dom";
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCollectionsStartAsync } from "../../redux/shop/shop.actions";
+import { fetchCollectionStart } from "../../redux/shop/shop.actions";
 import { selectIsCollectionsLoaded } from "../../redux/shop/shop.selector";
 
 //Components
@@ -21,7 +21,7 @@ const Shop = ({ match }) => {
   const isCollectionsLoaded = useSelector(selectIsCollectionsLoaded);
 
   useEffect(() => {
-    dispatch(fetchCollectionsStartAsync());
+    dispatch(fetchCollectionStart());
   }, [dispatch]);
 
   return (
