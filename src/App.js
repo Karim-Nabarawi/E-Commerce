@@ -20,37 +20,37 @@ import LoginPage from "./Pages/LoginPage/LoginPage";
 import Checkout from "./Pages/checkout/Checkout";
 
 function App() {
-  const [User, setUser] = useState(null);
-  const dispatch = useDispatch();
+  // const [User, setUser] = useState(null);
+  // const dispatch = useDispatch();
 
   const currentUser = useSelector(selectCurrentUser);
 
-  useEffect(() => dispatch(setCurrentUser(User)), [User, dispatch]);
-  useEffect(() => {
-    // check if user is signin or not and if signed in get the user data ()
-    let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-      //  setCurrentUser(user);
-      if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth);
+  // useEffect(() => dispatch(setCurrentUser(User)), [User, dispatch]);
+  // useEffect(() => {
+  //   // check if user is signin or not and if signed in get the user data ()
+  //   let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
+  //     //  setCurrentUser(user);
+  //     if (userAuth) {
+  //       const userRef = await createUserProfileDocument(userAuth);
 
-        //using onSnapshot we can get a snape (copy) of the data from database (if it exist, and it's data)
-        userRef.onSnapshot((snapShot) => {
-          setUser({
-            currentUser: {
-              id: snapShot.id,
-              ...snapShot.data(),
-            },
-          });
-        });
-      } else {
-        setUser(userAuth);
-      }
-    });
+  //       //using onSnapshot we can get a snape (copy) of the data from database (if it exist, and it's data)
+  //       userRef.onSnapshot((snapShot) => {
+  //         setUser({
+  //           currentUser: {
+  //             id: snapShot.id,
+  //             ...snapShot.data(),
+  //           },
+  //         });
+  //       });
+  //     } else {
+  //       setUser(userAuth);
+  //     }
+  //   });
 
-    return () => {
-      unsubscribeFromAuth();
-    };
-  }, []);
+  //   return () => {
+  //     unsubscribeFromAuth();
+  //   };
+  // }, []);
 
   return (
     <div>

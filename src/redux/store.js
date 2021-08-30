@@ -4,7 +4,7 @@ import logger from "redux-logger";
 
 //Saga
 import createSagaMiddleware from "redux-saga";
-import { fetchCollectionsStart } from "./shop/shop.saga";
+import rootSaga from "./root-saga";
 
 import rootReducer from "./root-reducer";
 
@@ -18,7 +18,7 @@ const composeEnchancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const store = createStore(rootReducer, composeEnchancer(applyMiddleware(...middlewares)));
 
-sagaMidleWare.run(fetchCollectionsStart);
+sagaMidleWare.run(rootSaga);
 
 export const persistor = persistStore(store);
 
