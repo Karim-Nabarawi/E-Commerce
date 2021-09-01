@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 
 //Styling and Animation
 import "./sign-up.styles.scss";
@@ -6,8 +7,7 @@ import "./sign-up.styles.scss";
 //components
 import CustomButton from "../custom-button/CustomButton";
 import FormInput from "../form-input/FormInput";
-
-import { auth, createUserProfileDocument } from "../../firebase/firebase.utils";
+import { signUpStart } from "../../redux/user/user.actions";
 
 const SignUp = () => {
   const [userCredentials, setUserCredentials] = useState({
@@ -18,6 +18,10 @@ const SignUp = () => {
   });
   const { displayName, email, password, confirmPassword } = userCredentials;
 
+  const dispatch = useDispatch();
+
+  useEffect(() => setUserCredentials({ displayName: "", email: "", password: "", confirmPassword: "" }), []);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -25,14 +29,7 @@ const SignUp = () => {
       alert("passwords don't match");
       return;
     }
-
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(email, password); // using firebase auth to create new account and get it's data back (same as google one) (to get UID)
-      await createUserProfileDocument(user, { displayName });
-      setUserCredentials({ displayName: "", email: "", password: "", confirmPassword: "" }); // clear form
-    } catch (error) {
-      console.error(error.message);
-    }
+    dispatch(signUpStart({ displayName, email, password }));
   };
 
   const handleChange = (e) => {

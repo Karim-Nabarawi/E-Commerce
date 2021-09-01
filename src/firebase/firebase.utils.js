@@ -18,6 +18,8 @@ const config = {
   measurementId: "G-LNJ8GJK30Q",
 };
 
+firebase.initializeApp(config);
+
 export const createUserProfileDocument = async (userAuth, additionalData) => {
   if (!userAuth) return; // userAuth holds all the date that we got when user logged in with google
 
@@ -61,7 +63,14 @@ export const convertCollectionsSnapshotToMap = (collections) => {
   }, {});
 };
 
-firebase.initializeApp(config);
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubsribe = auth.onAuthStateChanged((userAuth) => {
+      unsubsribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();

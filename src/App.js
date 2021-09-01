@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 //redux
 import { useDispatch, useSelector } from "react-redux";
-import { setCurrentUser } from "./redux/user/user.actions";
+import { checkUserSession } from "./redux/user/user.actions";
 import { selectCurrentUser } from "./redux/user/user.selector";
-
-//auth
-import { auth, createUserProfileDocument } from "./firebase/firebase.utils";
 
 //Styling
 import "./styles/App.css";
@@ -20,12 +17,12 @@ import LoginPage from "./Pages/LoginPage/LoginPage";
 import Checkout from "./Pages/checkout/Checkout";
 
 function App() {
-  // const [User, setUser] = useState(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const currentUser = useSelector(selectCurrentUser);
 
   // useEffect(() => dispatch(setCurrentUser(User)), [User, dispatch]);
+  useEffect(() => dispatch(checkUserSession()), [dispatch]);
   // useEffect(() => {
   //   // check if user is signin or not and if signed in get the user data ()
   //   let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {

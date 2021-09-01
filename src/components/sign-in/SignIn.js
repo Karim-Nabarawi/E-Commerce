@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 
-//Google signin
-import { signInWithGoogle, auth } from "../../firebase/firebase.utils";
-import { googleSignInStart } from "../../redux/user/user.actions";
+//redux
+import { googleSignInStart, emailSignInStart } from "../../redux/user/user.actions";
 
 //Styling and Animation
 import "./signIn.styles.scss";
@@ -17,14 +16,16 @@ const SignIn = () => {
   const [userCredentials, setUserCredentials] = useState({ email: "", password: "" });
   const { email, password } = userCredentials;
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setUserCredentials({ email: "", password: "" });
-    } catch (error) {
-      console.error(error.message);
-    }
+    dispatch(emailSignInStart(userCredentials));
+    setUserCredentials({ email: "", password: "" });
+    // try {
+    //   await auth.signInWithEmailAndPassword(email, password);
+    //   setUserCredentials({ email: "", password: "" });
+    // } catch (error) {
+    //   console.error(error.message);
+    // }
   };
 
   const handleChange = (e) => {
