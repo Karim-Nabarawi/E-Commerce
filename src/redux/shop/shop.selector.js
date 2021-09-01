@@ -14,9 +14,8 @@ export const selectShopCollectionsForPreview = createSelector([selectShopCollect
   collections ? Object.values(collections) : []
 );
 
-export const selectCollection = (collectionURLParam, collections) => {
-  return collections ? collections[collectionURLParam] : null;
-};
+export const selectCollection = (collectionUrlParam) =>
+  createSelector([selectShopCollections], (collections) => (collections ? collections[collectionUrlParam] : null));
 
 export const selectIsFetching = createSelector([selectShop], (shop) => shop.isFetching);
 

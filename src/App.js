@@ -21,33 +21,7 @@ function App() {
 
   const currentUser = useSelector(selectCurrentUser);
 
-  // useEffect(() => dispatch(setCurrentUser(User)), [User, dispatch]);
   useEffect(() => dispatch(checkUserSession()), [dispatch]);
-  // useEffect(() => {
-  //   // check if user is signin or not and if signed in get the user data ()
-  //   let unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
-  //     //  setCurrentUser(user);
-  //     if (userAuth) {
-  //       const userRef = await createUserProfileDocument(userAuth);
-
-  //       //using onSnapshot we can get a snape (copy) of the data from database (if it exist, and it's data)
-  //       userRef.onSnapshot((snapShot) => {
-  //         setUser({
-  //           currentUser: {
-  //             id: snapShot.id,
-  //             ...snapShot.data(),
-  //           },
-  //         });
-  //       });
-  //     } else {
-  //       setUser(userAuth);
-  //     }
-  //   });
-
-  //   return () => {
-  //     unsubscribeFromAuth();
-  //   };
-  // }, []);
 
   return (
     <div>
