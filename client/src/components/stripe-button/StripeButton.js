@@ -11,7 +11,6 @@ const StripeButton = ({ price }) => {
   const publishableKey =
     "pk_test_51JTFnmC2q6QYDKQCbXYWO9BVVB36HaB5ZTW8IcHQqKZrDnHDN8CrqOBVB9MZh8am82gHDKTrTnXsM8mFgAYex5wq00gGBoBMGb";
   const onToken = (token) => {
-    console.log(token);
     const config = {
       url: "payment",
       method: "post",
